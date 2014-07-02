@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-06-2014 10:39:29 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.pojos.Tutor" table="tutor" catalog="caso_1">
+        <id name="rut" type="string">
+            <column name="rut" length="20" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="direccion" class="cl.pojos.Direccion" fetch="select">
+            <column name="direccion_id" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="45" not-null="true" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="45" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="45" not-null="true" />
+        </property>
+        <property name="telefono" type="string">
+            <column name="telefono" length="15" not-null="true" />
+        </property>
+        <property name="biografia" type="string">
+            <column name="biografia" length="500" not-null="true" />
+        </property>
+        <property name="especialidad" type="string">
+            <column name="especialidad" length="30" not-null="true" />
+        </property>
+        <property name="clave" type="string">
+            <column name="clave" length="15" not-null="true" />
+        </property>
+        <set name="cursos" table="curso" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="tutor_id" length="20" not-null="true" />
+            </key>
+            <one-to-many class="cl.pojos.Curso" />
+        </set>
+    </class>
+</hibernate-mapping>
