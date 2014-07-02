@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 30-06-2014 10:39:29 AM by Hibernate Tools 3.6.0 -->
+<hibernate-mapping>
+    <class name="cl.pojos.Direccion" table="direccion" catalog="caso_1">
+        <id name="direccionId" type="java.lang.Integer">
+            <column name="direccion_id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="region" class="cl.pojos.Region" fetch="select">
+            <column name="region" not-null="true" />
+        </many-to-one>
+        <many-to-one name="provincia" class="cl.pojos.Provincia" fetch="select">
+            <column name="provincia" not-null="true" />
+        </many-to-one>
+        <many-to-one name="comuna" class="cl.pojos.Comuna" fetch="select">
+            <column name="comuna" not-null="true" />
+        </many-to-one>
+        <property name="calle" type="string">
+            <column name="calle" length="45" not-null="true" />
+        </property>
+        <set name="estudiantes" table="estudiante" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="direccion_id" not-null="true" />
+            </key>
+            <one-to-many class="cl.pojos.Estudiante" />
+        </set>
+        <set name="tutors" table="tutor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="direccion_id" not-null="true" />
+            </key>
+            <one-to-many class="cl.pojos.Tutor" />
+        </set>
+    </class>
+</hibernate-mapping>
