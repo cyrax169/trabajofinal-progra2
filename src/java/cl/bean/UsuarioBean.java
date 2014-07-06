@@ -54,7 +54,7 @@ public class UsuarioBean {
     public UsuarioBean() {
     }
 
-    public String Validad(){
+   /** public String Validad(){
          
         //crear sesionfactory y session
         estudiante =(Estudiante) se.createQuery("from Estudiante e where e.rut='"+Rut+"'").uniqueResult();
@@ -84,7 +84,7 @@ public class UsuarioBean {
            //mostrar un mensaje de que el rut no existe
         }
        
-    }
+    }**/
        public String cerrarSesion(){
         estudiante = null;
         return "index";
