@@ -49,9 +49,7 @@ public class UsuarioBean {
 
     public void setTutor(Tutor Tutor) {
         this.tutor = Tutor;
-    }
-
-    
+    }  
     
     public UsuarioBean() {
     }
