@@ -1,10 +1,13 @@
-
 package cl.bean;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import cl.pojos.*;
+import cl.util.*;
 import javax.faces.context.FacesContext;
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 /**
  *
@@ -16,7 +19,7 @@ public class UsuarioBean {
 
     private String Rut;
     private String Clave;
-    private Estudiante estudiante;    
+    private Estudiante estudiante;
     private Tutor tutor;
 
     public String getRut() {
@@ -49,43 +52,46 @@ public class UsuarioBean {
 
     public void setTutor(Tutor Tutor) {
         this.tutor = Tutor;
-    }  
-    
+    }
+
     public UsuarioBean() {
     }
 
-   /** public String Validad(){
-         
+   /** public String Validar() {
+
+        SessionFactory sf = HibernateUtil.getSessionFactory();
+        Session se = sf.openSession();
         //crear sesionfactory y session
-        estudiante =(Estudiante) se.createQuery("from Estudiante e where e.rut='"+Rut+"'").uniqueResult();
-        tutor =(Tutor) se.createQuery("from Tutor e where e.rut='"+Rut+"'").uniqueResult();
-        if((estudiante) != null){
-           if(estudiante.getClave().equals(Clave)){
+        estudiante = (Estudiante) se.createQuery("from Estudiante e where e.rut='" + Rut + "'").uniqueResult();
+        tutor = (Tutor) se.createQuery("from Tutor e where e.rut='" + Rut + "'").uniqueResult();
+        if ((estudiante) != null) {
+            if (estudiante.getClave().equals(Clave)) {
                //crear una sesion 
-               //redireccionar al menu del estudiante
-       
-           }else{
-               //mostrar un mensaje que la clave es incorrecta
+                //redireccionar al menu del estudiante
+
+            } else {
+                //mostrar un mensaje que la clave es incorrecta
             }
-        
-        }else if (tutor != null){
-               if(tutor.getClave().equals(Clave)){
+
+        } else if (tutor != null) {
+            if (tutor.getClave().equals(Clave)) {
                //crear una sesion 
-               //redireccionar al menu del estudiante
-        
-           }else{
-               //mostrar un mensaje que la clave es incorrecta
+                //redireccionar al menu del estudiante
+
+            } else {
+                //mostrar un mensaje que la clave es incorrecta
             }
-          
-        }else if (Rut.equals("admin") && Clave.equals("admin")){
+
+        } else if (Rut.equals("admin") && Clave.equals("admin")) {
            //redireccionar al menu del admin
-         
-        }else{
-           //mostrar un mensaje de que el rut no existe
+
+        } else {
+            //mostrar un mensaje de que el rut no existe
         }
-       
-    }**/
-       public String cerrarSesion(){
+
+    }
+**/
+    public String cerrarSesion() {
         estudiante = null;
         return "index";
     }
